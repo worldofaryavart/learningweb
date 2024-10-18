@@ -23,7 +23,7 @@ const Slider = ({ heading, data, isvideo }) => {
                 <div className="flex justify-between items-center w-full">
                     {[currentIndex - 1, currentIndex, currentIndex + 1].map((index, i) => {
                         const normalizedIndex = (index + data.length) % data.length;
-                        const slideData = data[normalizedIndex]; // Fixed data reference
+                        const slideData = data[normalizedIndex]; 
                         return (
                             <div
                                 key={normalizedIndex}
@@ -74,8 +74,8 @@ const Slider = ({ heading, data, isvideo }) => {
 };
 
 Slider.propTypes = {
-    heading: PropTypes.string.isRequired, // Added validation for heading
-    isvideo: PropTypes.bool, // Added validation for isvideo
+    heading: PropTypes.string.isRequired, 
+    isvideo: PropTypes.bool,
     data: PropTypes.arrayOf(
         PropTypes.shape({
             image: PropTypes.string.isRequired,

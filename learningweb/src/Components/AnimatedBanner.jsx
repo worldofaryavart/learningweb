@@ -7,7 +7,7 @@ const LearningWeekBanner = ({ cards }) => {
 
   useEffect(() => {
     const checkDesktop = () => {
-      const isDesktopView = window.innerWidth >= 1024; 
+      const isDesktopView = window.innerWidth >= 1024;
       setIsDesktop(isDesktopView);
       setShowMascot(isDesktopView);
     };
@@ -80,12 +80,22 @@ const LearningWeekBanner = ({ cards }) => {
           className="absolute inset-0"
           style={{
             backgroundImage: `
-              linear-gradient(135deg, transparent 0%, transparent 25%, rgba(234, 184, 209, 0.1) 25%, rgba(234, 184, 209, 0.1) 50%, transparent 50%, transparent 75%, rgba(234, 184, 209, 0.1) 75%, rgba(234, 184, 209, 0.1) 100%)
+              linear-gradient(
+                135deg, 
+                transparent 0%, 
+                transparent 44%, 
+                rgba(234, 184, 209, 0.1) 44%, 
+                rgba(234, 184, 209, 0.1) 51%, 
+                transparent 51%, 
+                transparent 100%
+              )
             `,
-            backgroundSize: '40px 40px, 40px 40px, 40px 40px',
-            backgroundPosition: '0 0, 20px 20px, 10px 10px'
+            backgroundSize: '18px 18px', // Keep the 8px grid size
+            backgroundPosition: '0 0',
           }}
         ></div>
+
+
 
         {/* Content */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center w-full">

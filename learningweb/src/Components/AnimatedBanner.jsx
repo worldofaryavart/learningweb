@@ -2,26 +2,31 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const LearningWeekBanner = ({ cards }) => {
-  const [showMascot, setShowMascot] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const [showMascot, setShowMascot] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust this breakpoint as needed
+    const checkDesktop = () => {
+      const isDesktopView = window.innerWidth >= 1024; 
+      setIsDesktop(isDesktopView);
+      setShowMascot(isDesktopView);
     };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
 
-    const timer = setTimeout(() => {
-      setShowMascot(false);
-    }, 5000);
+    let timer;
+    if (isDesktop) {
+      timer = setTimeout(() => {
+        setShowMascot(false);
+      }, 5000);
+    }
 
     return () => {
-      clearTimeout(timer);
-      window.removeEventListener('resize', checkMobile);
+      if (timer) clearTimeout(timer);
+      window.removeEventListener('resize', checkDesktop);
     };
-  }, []);
+  }, [isDesktop]);
 
   const bannerVariants = {
     hidden: { x: '-100%' },
@@ -105,23 +110,25 @@ const LearningWeekBanner = ({ cards }) => {
       </motion.div>
 
       {/* Animated Mascot */}
-      <AnimatePresence>
-        {showMascot && !isMobile && (
-          <motion.div
-            className="absolute top-0 bottom-0 right-0 flex items-center z-20 h-[350px] w-[350px]"
-            variants={mascotVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            <img
-              src="walk.gif"
-              alt="Mascot"
-              className="h-full w-auto"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isDesktop && (
+        <AnimatePresence>
+          {showMascot && (
+            <motion.div
+              className="absolute top-0 bottom-0 right-0 flex items-center z-20 h-[350px] w-[350px]"
+              variants={mascotVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              <img
+                src="walk.gif"
+                alt="Mascot"
+                className="h-full w-auto"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
 
       <div
         className="grid grid-cols-1 gap-4 mt-8 mx-2 sm:mx-4 lg:mx-5 

@@ -1,98 +1,63 @@
-// import { ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react';
 import LearningWeekBanner from './Components/AnimatedBanner'
-import LearningPlatformPage from './Components/LearningWeb'
 import Navbar from './Components/Navbar'
 import './index.css'
-import VideoGallerySlider from './Components/Slider';
 import LearningEngagement from './Components/LearningEngagement';
+import MasalComponent from './Components/MasalComponent';
+import Slider from './Components/Slider';
+import MasalTravelHistory from './Components/LearningWeb';
+import Footer from './Components/Footer';
 
 function App() {
+  
   const cards = [
-    {
-      'image': 'images/card1.png',
-      'label': 'card1',
-    },
-    {
-      'image': 'images/card2.png',
-      'label': 'card2',
-    },
-    {
-      'image': 'images/card3.png',
-      'label': 'card3',
-    },
-    {
-      'image': 'images/card4.png',
-      'label': 'card4',
-    },
-    {
-      'image': 'images/card5.png',
-      'label': 'card5',
-    },
+    { 'image': 'images/card1.png', 'label': 'card1' },
+    { 'image': 'images/card2.png', 'label': 'card2' },
+    { 'image': 'images/card3.png', 'label': 'card3' },
+    { 'image': 'images/card4.png', 'label': 'card4' },
+    { 'image': 'images/card5.png', 'label': 'card5' },
   ];
 
   const activities = [
-    { title: "Authentic Leadership", icon: "activity1.svg" },
-    { title: "Data Analytics", icon: "activity3.svg" },
-    { title: "Influencing the Ecosystem", icon: "activity2.svg" },
-    { title: "Macroeconomics", icon: "activity4.svg" },
-    // { title: "Macro", icon: "activity5.svg" },
+    [{ title: "Authentic Leadership", icon: "activity1.svg" }, { title: "Growth Mindset", icon: "activity5.svg" }],
+    [{ title: "Data Analytics", icon: "activity3.svg" }, { title: "Digital Transformation", icon: "activity4.svg" }],
+    [{ title: "Influencing the Ecosystem", icon: "activity2.svg" }],
+    [{ title: "Macroeconomics", icon: "activity6.svg" }],
+    [{ title: "Macroeconomics", icon: "activity6.svg" }],
+    // ... more days of activities
   ];
-
   const gamingActivities = [
-    // Similar structure to activities, but for gaming content
-    { title: "Authentic Leadership", icon: "/path/to/trophy-icon.png" },
-    { title: "Data Analytics", icon: "/path/to/analytics-icon.png" },
-    { title: "Influencing the Ecosystem", icon: "/path/to/ecosystem-icon.png" },
-    { title: "Macroeconomics", icon: "/path/to/economics-icon.png" },
+    [{ title: "OutSmart Your Opponent", icon: "images/games/outsmart.jpeg" }],
+    [{ title: "Minecraft", icon: "images/games/minecraft.jpg" }],
+    [{ title: "Grand Theft Auto V", icon: "images/games/gta.jpeg" }],
+    [{ title: "Red Redemption 2", icon: "images/games/rd2.jpeg" }],
+    [{ title: "Call of Duty", icon: "images/games/cod.jpeg" }],
+    // ... more days of activities
   ];
 
   const videoGalleryData = [
-    {
-      'image': 'images/img1.jpeg',
-      'label': 'img1',
-      'date': '12 Sep, 2024'
-    },
-    {
-      'image': 'images/img2.jpeg',
-      'label': 'img2',
-      'date': '15 Oct, 2024',
-    },
-    {
-      'image': 'images/img3.jpeg',
-      'label': 'img3',
-      'date': '10 Oct, 2024'
-    },
+    { 'image': 'images/img1.jpeg', 'label': 'img1', 'date': '12 Sep, 2024' },
+    { 'image': 'images/img2.jpeg', 'label': 'img2', 'date': '15 Oct, 2024' },
+    { 'image': 'images/img3.jpeg', 'label': 'img3', 'date': '10 Oct, 2024' },
   ];
+
+  const imagesData = [
+    { 'image': 'images/img1.jpeg', 'label': 'img1', 'date': '12 Sep, 2024' },
+    { 'image': 'images/img2.jpeg', 'label': 'img2', 'date': '15 Oct, 2024' },
+    { 'image': 'images/img3.jpeg', 'label': 'img3', 'date': '10 Oct, 2024' },
+  ]
+
   return (
     <>
       <Navbar />
-      <div className='p-20'>
-        <LearningWeekBanner />
-        <div className="flex justify-center mt-8 space-x-4">
-          {cards.map((card, index) => (
-            <div key={index} className="p-2 text-center text-xs">
-              <img
-                src={card.image}
-                alt={card.label}
-                className="h-[214px] w-[270px] object-cover"
-              />
-            </div>
-          ))}
-        </div>
-
-        <VideoGallerySlider videos={videoGalleryData} />
-        
+      <div className='pt-10'>
+        <LearningWeekBanner cards={cards} />
+        <Slider heading={"Our Video Gallery"} data={videoGalleryData} isvideo={true} />
         <LearningEngagement activities={activities} gamingActivities={gamingActivities} />
-        <div className="bg-[#571937] h-[600px] text-white text-center">
-          <p className="text-xs">Explore our app to keep the</p>
-          <p className="text-yellow-400 text-lg font-bold">mashaal of knowledge burning bright</p>
-          <p className="text-xs">as you discover other features that enhance your learning journey and ignite your passion for growth!</p>
-        </div>
-        <VideoGallerySlider videos={videoGalleryData} />
-
-
+        <MasalComponent />
+        <Slider heading={"Glimpse of HO and Branch Activities"} data={imagesData} isvideo={false} />
+        <MasalTravelHistory />
       </div>
-      <LearningPlatformPage />
+      <Footer />
     </>
   )
 }

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ChevronLeft, ChevronRight, Clock, Gamepad2 } from 'lucide-react';
+import {Clock, Gamepad2 } from 'lucide-react';
+import ActivityCards from './ActivityCard';
+import GamingActivity from './GamingActivityCard';
 
 const LearningEngagement = ({ activities, gamingActivities }) => {
     const [activeTab, setActiveTab] = useState('activity');
@@ -54,37 +56,14 @@ const LearningEngagement = ({ activities, gamingActivities }) => {
         </div>
     );
 
-    const renderCards = () => {
-        const currentActivities = activeTab === 'activity' ? activities : gamingActivities;
-        return (
-            <div className="m-4 flex justify-center space-x-4 relative">
-                <button className="absolute left-7 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md">
-                    <ChevronLeft size={24} />
-                </button>
-                {currentActivities.map((activity, index) => (
-                    <div key={index} className="bg-white p-4 w-[190px] h-[300px] shadow-md rounded-md flex flex-col items-center">
-                        <p className="font-bold text-sm text-yellow-500 mb-2">Day {index + 1}</p>
-                        <img src={activity.icon} alt={activity.title} className="w-16 h-16 mb-2" />
-                        <p className="text-xs text-center mb-2">{activity.title}</p>
-                        <button className="bg-red-600 text-white px-4 py-1 text-xs rounded">
-                            Learn Now
-                        </button>
-                    </div>
-                ))}
-                <button className="absolute right-7 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md">
-                    <ChevronRight size={24} />
-                </button>
-            </div>
-        );
-    };
-
     return (
         <>
         <h2 className="text-center text-4xl font-bold mb-4 text-[#8B0000] pt-2">Learning Engagement</h2>
         <div className="bg-gray-100 pb-6">
             {renderMetrics()}
             {renderTabs()}
-            {renderCards()}
+            {activeTab === 'activity' ? <ActivityCards activities={activities}/> : <GamingActivity gamingActivities={gamingActivities}/>}
+            
         </div>
         </>
     );

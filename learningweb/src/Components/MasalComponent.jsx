@@ -36,7 +36,7 @@ const AnimatedMasalComponent = () => {
                     }}
                     className="relative flex flex-col justify-center items-center mb-8 md:mb-12"
                 >
-                    <motion.img
+                    {/* <motion.img
                         variants={{
                             visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 1.5 } },
                             hidden: { opacity: 0, scale: 0.5 },
@@ -44,12 +44,12 @@ const AnimatedMasalComponent = () => {
                         src="animation.gif"
                         alt="Flame"
                         className="absolute w-[300px] h-[70px] md:w-[600px] md:h-[250px] lg:w-[800px] lg:h-[450px] bottom-full mb-[-100px] md:mb-[-200px] lg:mb-[-300px] transform -translate-x-1/2"
-                    />
+                    /> */}
 
                     <img
-                        src="/api/placeholder/100/200"
+                        src="images/masal.png"
                         alt="Flame body"
-                        className="w-32 md:w-48 lg:w-64 mb-[-200px] md:mb-[-400px] lg:mb-[-600px]"
+                        className="w-32 md:w-28 lg:w-34 mb-[-100px] md:mb-[-200px] lg:mb-[-300px]"
                     />
                 </motion.div>
 

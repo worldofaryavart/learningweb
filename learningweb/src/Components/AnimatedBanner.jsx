@@ -118,17 +118,24 @@ const LearningWeekBanner = ({ cards }) => {
         )}
       </AnimatePresence> */}
 
-      <div className="flex flex-wrap justify-center mt-8 space-x-0 space-y-4 sm:space-x-1 sm:space-y-0 mx-2 sm:mx-4 lg:mx-5">
+      <div
+        className="grid grid-cols-1 gap-4 mt-8 mx-2 sm:mx-4 lg:mx-5 
+             sm:flex sm:flex-wrap sm:justify-center sm:space-x-1"
+      >
         {cards.map((card, index) => (
-          <div key={index} className="p-2 text-center text-xs w-full sm:w-auto">
+          <div
+            key={index}
+            className="p-2 text-center text-xs w-full sm:w-auto"
+          >
             <img
               src={card.image}
               alt={card.label}
-              className="h-[150px] w-1/2 sm:h-[214px] sm:w-[200px] object-cover"
+              className="h-[150px] w-1/2 sm:h-[214px] sm:w-[200px] object-cover mx-auto"
             />
           </div>
         ))}
       </div>
+
     </div>
   );
 };

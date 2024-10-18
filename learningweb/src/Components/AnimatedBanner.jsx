@@ -90,7 +90,7 @@ const LearningWeekBanner = ({ cards }) => {
                 transparent 100%
               )
             `,
-            backgroundSize: '18px 18px', // Keep the 8px grid size
+            backgroundSize: '18px 18px', 
             backgroundPosition: '0 0',
           }}
         ></div>

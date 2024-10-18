@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
+import PropTypes from 'prop-types';
 
 const stats = [
     { from: 10000, to: 20000, label: "Employees Engaged" },
@@ -15,10 +16,15 @@ const locations = [
     { city: "Pune", top: "64%", left: "25%" },
 ];
 
-const useAnimatedNumber = (from, to) => {
+const useAnimatedNumber = (from, to, isVisible) => {
     const [number, setNumber] = useState(from);
 
     useEffect(() => {
+        if (!isVisible) {
+            setNumber(from);
+            return;
+        }
+
         const duration = 2000;
         const steps = 60; 
         const stepDuration = duration / steps;
@@ -37,13 +43,13 @@ const useAnimatedNumber = (from, to) => {
         }, stepDuration);
 
         return () => clearInterval(interval);
-    }, [from, to]);
+    }, [from, to, isVisible]);
 
     return Math.floor(number);
 };
 
-const AnimatedStat = ({ from, to, label }) => {
-    const animatedNumber = useAnimatedNumber(from, to);
+const AnimatedStat = ({ from, to, label, isVisible }) => {
+    const animatedNumber = useAnimatedNumber(from, to, isVisible);
     
     return (
         <div className="bg-green-800 text-white p-6 rounded-md shadow-md flex flex-col items-center">
@@ -55,16 +61,51 @@ const AnimatedStat = ({ from, to, label }) => {
     );
 };
 
-const MasalTravelHistory = () => {
+AnimatedStat.propTypes = {
+    from: PropTypes.number.isRequired,
+    to: PropTypes.number.isRequired,
+    label: PropTypes.string.isRequired,
+    isVisible: PropTypes.bool.isRequired,
+};
+
+const MasalTravelHistory = ({ mapImageSrc, masalIconSrc }) => {
+    const [isVisible, setIsVisible] = useState(false);
+    const componentRef = useRef(null);
+
+    const observerCallback = useCallback((entries) => {
+        const [entry] = entries;
+        setIsVisible(entry.isIntersecting);
+    }, []);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(observerCallback, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1,
+        });
+
+        const currentRef = componentRef.current;
+
+        if (currentRef) {
+            observer.observe(currentRef);
+        }
+
+        return () => {
+            if (currentRef) {
+                observer.unobserve(currentRef);
+            }
+        };
+    }, [observerCallback]);
+
     return (
-        <div className="bg-white min-h-screen flex flex-col items-center justify-center p-8">
+        <div ref={componentRef} className="bg-white min-h-screen flex flex-col items-center justify-center p-8">
             <h2 className="text-center text-4xl font-bold mb-12 text-[#8B0000]">
                 Our Mashal&apos;s Travel History
             </h2>
 
             <div className="flex flex-col md:flex-row items-center space-y-8 md:space-y-0 md:space-x-16">
                 <div className="relative w-[400px] md:w-[500px]">
-                    <img src="images/map.png" alt="India Map" className="w-full" />
+                    <img src={mapImageSrc} alt="India Map" className="w-full" />
                     {locations.map((location, index) => (
                         <div
                             key={index}
@@ -76,7 +117,7 @@ const MasalTravelHistory = () => {
                                 className="relative group"
                             >
                                 <img
-                                    src="images/masal.png"
+                                    src={masalIconSrc}
                                     alt={location.city}
                                     className="w-4 h-8 cursor-pointer z-10"
                                 />
@@ -94,12 +135,17 @@ const MasalTravelHistory = () => {
 
                 <div className="space-y-6">
                     {stats.map((stat, index) => (
-                        <AnimatedStat key={index} {...stat} />
+                        <AnimatedStat key={index} {...stat} isVisible={isVisible} />
                     ))}
                 </div>
             </div>
         </div>
     );
+};
+
+MasalTravelHistory.propTypes = {
+    mapImageSrc: PropTypes.string.isRequired,
+    masalIconSrc: PropTypes.string.isRequired,
 };
 
 export default MasalTravelHistory;

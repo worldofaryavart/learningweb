@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import LearningWeekBanner from './Components/AnimatedBanner';
 import Navbar from './Components/Navbar';
 import './index.css';
@@ -64,7 +64,10 @@ function App() {
             <Slider heading="Glimpse of HO and Branch Activities" data={imagesData} isvideo={false} />
           </section>
           <section className="my-8">
-            <MasalTravelHistory />
+            <MasalTravelHistory
+              mapImageSrc="/images/map.png"
+              masalIconSrc="/images/masal.png"
+            />
           </section>
         </div>
       </main>

@@ -14,20 +14,19 @@ const AnimatedMasalComponent = () => {
     }, [isInView, controls]);
 
     return (
-        <div ref={ref} className="bg-[#571937] h-[550px] flex flex-col text-white text-center relative overflow-hidden">
-            <div className="flex flex-col justify-start items-center">
-
-                <p className="text-sm md:text-md mb-2">
+        <div ref={ref} className="bg-[#571937] min-h-[550px] flex flex-col text-white text-center relative overflow-hidden px-4 py-8 md:px-8 md:py-12">
+            <div className="flex flex-col justify-start items-center mb-8 md:mb-12">
+                <p className="text-sm md:text-base lg:text-lg mb-2">
                     Explore our app to keep the
                 </p>
-                <p className="text-yellow-400 text-2xl md:text-4xl font-bold mb-2">
+                <p className="text-yellow-400 text-xl md:text-3xl lg:text-4xl font-bold mb-2">
                     mashaal of knowledge burning bright
                 </p>
-                <p className="text-xs md:text-lg max-w-2xl">
+                <p className="text-xs md:text-sm lg:text-base max-w-xs md:max-w-lg lg:max-w-2xl mx-auto">
                     as you discover other features that enhance your learning journey and ignite your passion for growth!
                 </p>
             </div>
-            <div className="flex flex-col justify-center items-center p-10">
+            <div className="flex flex-col justify-center items-center">
                 <motion.div
                     initial="hidden"
                     animate={controls}
@@ -35,7 +34,7 @@ const AnimatedMasalComponent = () => {
                         visible: { y: 0, opacity: 1, transition: { duration: 2 } },
                         hidden: { y: "100%", opacity: 0 },
                     }}
-                    className="relative flex flex-col justify-center items-center"
+                    className="relative flex flex-col justify-center items-center mb-8 md:mb-12"
                 >
                     <motion.img
                         variants={{
@@ -44,18 +43,17 @@ const AnimatedMasalComponent = () => {
                         }}
                         src="animation.gif"
                         alt="Flame"
-                        className="absolute w-[1200px] h-[800px] bottom-full mb-[-300px] transform -translate-x-1/2 md:w-[600px] md:h-[400px]"
+                        className="absolute w-[300px] h-[70px] md:w-[600px] md:h-[250px] lg:w-[800px] lg:h-[450px] bottom-full mb-[-100px] md:mb-[-200px] lg:mb-[-300px] transform -translate-x-1/2"
                     />
 
                     <img
                         src="/api/placeholder/100/200"
                         alt="Flame body"
-                        className="w-64 md:w-80 mb-[-800px]"
+                        className="w-32 md:w-48 lg:w-64 mb-[-200px] md:mb-[-400px] lg:mb-[-600px]"
                     />
                 </motion.div>
 
-
-                <div className="flex justify-between w-full max-w-3xl mt-8">
+                <div className="flex flex-col md:flex-row justify-between w-full max-w-xs md:max-w-2xl lg:max-w-3xl mt-4 md:mt-8">
                     <motion.div
                         initial="hidden"
                         animate={controls}
@@ -63,10 +61,10 @@ const AnimatedMasalComponent = () => {
                             visible: { x: 0, opacity: 1, transition: { duration: 2, delay: 2 } },
                             hidden: { x: "-100%", opacity: 0 }
                         }}
-                        className="flex flex-col items-start"
+                        className="flex flex-col items-center md:items-start mb-4 md:mb-0"
                     >
-                        <Button className="m-5 mt-10">Our Hero&apos;s</Button>
-                        <Button className='mt-10'>PIFA</Button>
+                        <Button className="mb-2 ml-4 md:mb-4">Our Hero&apos;s</Button>
+                        <Button>PIFA</Button>
                     </motion.div>
                     <motion.div
                         initial="hidden"
@@ -75,11 +73,11 @@ const AnimatedMasalComponent = () => {
                             visible: { x: 0, opacity: 1, transition: { duration: 2, delay: 2 } },
                             hidden: { x: "100%", opacity: 0 }
                         }}
-                        className="flex flex-col items-end"
+                        className="flex flex-col items-center md:items-end"
                     >
-                        <Button className="my-5 mr-20">Digital Transformation</Button>
-                        <Button className="my-5 mr-4 mb-5">Our Brands</Button>
-                        <Button className='mt-3'>DSG</Button>
+                        <Button className="mb-2 mr-10 md:mb-4">Digital Transformation</Button>
+                        <Button className="mb-2 mr-5 md:mb-4">Our Brands</Button>
+                        <Button>DSG</Button>
                     </motion.div>
                 </div>
             </div>
@@ -88,7 +86,7 @@ const AnimatedMasalComponent = () => {
 }
 
 const Button = ({ children, className = "" }) => (
-    <button className={`bg-[#BE3A84] text-white py-2 px-4 rounded-full text-xl md:text-lg whitespace-nowrap ${className}`}>
+    <button className={`bg-[#BE3A84] text-white py-2 px-4 rounded-full text-sm md:text-base lg:text-lg whitespace-nowrap ${className}`}>
         {children}
     </button>
 );

@@ -7,7 +7,7 @@ const LearningWeekBanner = ({ cards }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMascot(false);
-    }, 1000); // Adjust this value to change when the mascot starts to disappear
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -53,7 +53,7 @@ const LearningWeekBanner = ({ cards }) => {
   return (
     <div className="relative overflow-hidden">
       <motion.div
-        className="relative bg-[#571937] p-6  px-10flex items-center mx-40"
+        className="relative bg-[#571937] p-4 sm:p-6 lg:px-10 flex flex-col lg:flex-row items-center mx-4 sm:mx-8 lg:mx-40"
         variants={bannerVariants}
         initial="hidden"
         animate="visible"
@@ -78,21 +78,21 @@ const LearningWeekBanner = ({ cards }) => {
         ></div>
 
         {/* Content */}
-        <div className="relative z-10 flex items-center">
-          <div className="bg-white p-4 rounded-lg mr-6 flex-shrink-0">
-            <div className="flex items-center">
+        <div className="relative z-10 flex flex-col lg:flex-row items-center w-full">
+          <div className="bg-white p-4 rounded-lg mb-4 lg:mb-0 lg:mr-6 flex-shrink-0">
+            <div className="flex items-center justify-center">
               <img
                 src="images/LearningWeek.png"
                 alt="Learning Fest 2024 Logo"
-                className="h-[273px] w-[273px] mr-4"
+                className="h-[150px] w-[150px] sm:h-[200px] sm:w-[200px] lg:h-[273px] lg:w-[273px]"
               />
             </div>
           </div>
-          <div>
-            <h2 className="text-5xl font-bold text-orange-400 mb-2">
+          <div className="text-center lg:text-left">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-orange-400 mb-2">
               Level up your learning <span className="text-white">-where fun meets knowledge!</span>
             </h2>
-            <p className="text-3xl text-white">
+            <p className="text-xl sm:text-2xl lg:text-3xl text-white">
               Join us for a week of interactive challenges and knowledge-boosting fun that unlocks your potential!
             </p>
           </div>
@@ -118,13 +118,13 @@ const LearningWeekBanner = ({ cards }) => {
         )}
       </AnimatePresence> */}
 
-      <div className="flex justify-center mt-8 space-x-4 mx-40">
+      <div className="flex flex-wrap justify-center mt-8 space-x-0 space-y-4 sm:space-x-1 sm:space-y-0 mx-2 sm:mx-4 lg:mx-5">
         {cards.map((card, index) => (
-          <div key={index} className="p-2 text-center text-xs">
+          <div key={index} className="p-2 text-center text-xs w-full sm:w-auto">
             <img
               src={card.image}
               alt={card.label}
-              className="h-[214px] w-[270px] object-cover"
+              className="h-[150px] w-1/2 sm:h-[214px] sm:w-[200px] object-cover"
             />
           </div>
         ))}

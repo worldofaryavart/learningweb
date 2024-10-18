@@ -98,7 +98,7 @@ const MasalTravelHistory = ({ mapImageSrc, masalIconSrc }) => {
     }, [observerCallback]);
 
     return (
-        <div ref={componentRef} className="bg-white min-h-screen flex flex-col items-center justify-center p-8">
+        <div ref={componentRef} className="bg-white min-h-[560px] flex flex-col items-center justify-center p-8">
             <h2 className="text-center text-4xl font-bold mb-12 text-[#8B0000]">
                 Our Mashal&apos;s Travel History
             </h2>

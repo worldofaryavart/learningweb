@@ -3,13 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const LearningWeekBanner = ({ cards }) => {
   const [showMascot, setShowMascot] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // Adjust this breakpoint as needed
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
     const timer = setTimeout(() => {
       setShowMascot(false);
     }, 5000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const bannerVariants = {
@@ -61,15 +72,15 @@ const LearningWeekBanner = ({ cards }) => {
       >
         {/* Background pattern */}
         <div
-  className="absolute inset-0"
-  style={{
-    backgroundImage: `
-      linear-gradient(135deg, transparent 0%, transparent 25%, rgba(234, 184, 209, 0.1) 25%, rgba(234, 184, 209, 0.1) 50%, transparent 50%, transparent 75%, rgba(234, 184, 209, 0.1) 75%, rgba(234, 184, 209, 0.1) 100%),
-    `,
-    backgroundSize: '40px 40px, 40px 40px, 40px 40px',
-    backgroundPosition: '0 0, 20px 20px, 10px 10px'
-  }}
-></div>
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `
+              linear-gradient(135deg, transparent 0%, transparent 25%, rgba(234, 184, 209, 0.1) 25%, rgba(234, 184, 209, 0.1) 50%, transparent 50%, transparent 75%, rgba(234, 184, 209, 0.1) 75%, rgba(234, 184, 209, 0.1) 100%)
+            `,
+            backgroundSize: '40px 40px, 40px 40px, 40px 40px',
+            backgroundPosition: '0 0, 20px 20px, 10px 10px'
+          }}
+        ></div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center w-full">
@@ -95,7 +106,7 @@ const LearningWeekBanner = ({ cards }) => {
 
       {/* Animated Mascot */}
       <AnimatePresence>
-        {showMascot && (
+        {showMascot && !isMobile && (
           <motion.div
             className="absolute top-0 bottom-0 right-0 flex items-center z-20 h-[350px] w-[350px]"
             variants={mascotVariants}
@@ -129,7 +140,6 @@ const LearningWeekBanner = ({ cards }) => {
           </div>
         ))}
       </div>
-
     </div>
   );
 };

@@ -49,7 +49,7 @@ const AnimatedMasalComponent = () => {
                     <img
                         src="images/masal.png"
                         alt="Flame body"
-                        className="w-32 md:w-28 lg:w-34 mb-[-100px] md:mb-[-200px] lg:mb-[-300px]"
+                        className="w-32 md:w-28 lg:w-34 mb-[-100px] md:mb-[-200px] lg:mb-[-300px] -z-10"
                     />
                 </motion.div>
 

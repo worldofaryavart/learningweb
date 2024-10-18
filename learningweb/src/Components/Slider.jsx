@@ -18,7 +18,7 @@ const Slider = ({ heading, data, isvideo }) => {
             <h2 className="text-center text-4xl font-bold mb-4 text-[#8B0000]">{heading}</h2>
             <div className="relative flex items-center overflow-hidden">
                 <button onClick={prevSlide} className="absolute left-4 z-10">
-                    <ChevronLeft className="text-white w-8 h-8" />
+                    <ChevronLeft className="text-white w-14 h-14" />
                 </button>
                 <div className="flex justify-between items-center w-full">
                     {[currentIndex - 1, currentIndex, currentIndex + 1].map((index, i) => {
@@ -54,7 +54,7 @@ const Slider = ({ heading, data, isvideo }) => {
                     })}
                 </div>
                 <button onClick={nextSlide} className="absolute right-4 z-10">
-                    <ChevronRight className="text-white w-8 h-8" />
+                    <ChevronRight className="text-white w-14 h-14" />
                 </button>
             </div>
             {isvideo && (

@@ -56,9 +56,9 @@ const ActivityCards = ({ activities }) => {
             <button
                 onClick={prevCards}
                 disabled={startIndex === 0}
-                className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md disabled:opacity-50 z-10"
+                className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md disabled:opacity-50 z-10"
             >
-                <ChevronLeft size={20} />
+                <ChevronLeft size={30}  />
             </button>
             <div className="flex flex-nowrap overflow-hidden w-[280px] md:w-auto md:space-x-4">
                 {activities.slice(startIndex, startIndex + cardsToShow).map((dayActivities, index) => (
@@ -72,9 +72,9 @@ const ActivityCards = ({ activities }) => {
             <button
                 onClick={nextCards}
                 disabled={startIndex >= activities.length - cardsToShow}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md disabled:opacity-50 z-10"
+                className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md disabled:opacity-50 z-10"
             >
-                <ChevronRight size={20} />
+                <ChevronRight size={30} />
             </button>
         </div>
     );

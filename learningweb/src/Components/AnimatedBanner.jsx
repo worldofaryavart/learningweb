@@ -7,7 +7,7 @@ const LearningWeekBanner = ({ cards }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMascot(false);
-    }, 1000);
+    }, 5000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -18,9 +18,9 @@ const LearningWeekBanner = ({ cards }) => {
       x: 0,
       transition: {
         type: 'spring',
-        damping: 20,
-        stiffness: 50,
-        duration: 2,
+        damping: 25,
+        stiffness: 40,
+        duration: 7,
         ease: 'easeInOut'
       }
     }
@@ -29,12 +29,12 @@ const LearningWeekBanner = ({ cards }) => {
   const mascotVariants = {
     hidden: { x: '-100%' },
     visible: {
-      x: 10,
+      x: "40%",
       transition: {
         type: 'spring',
-        damping: 20,
-        stiffness: 50,
-        duration: 3,
+        damping: 25,
+        stiffness: 40,
+        duration: 7,
         ease: 'easeInOut'
       }
     },
@@ -44,8 +44,9 @@ const LearningWeekBanner = ({ cards }) => {
         type: 'spring',
         damping: 20,
         stiffness: 40,
-        duration: 3,
-        ease: 'easeInOut'
+        duration: 2,
+        ease: 'easeInOut',
+        delay: 1
       }
     }
   };
@@ -60,22 +61,15 @@ const LearningWeekBanner = ({ cards }) => {
       >
         {/* Background pattern */}
         <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `linear-gradient(
-              60deg,
-              rgba(234, 184, 209, 0.3) 3px,
-              transparent 3px
-            ),
-            linear-gradient(
-              60deg,
-              rgba(234, 184, 209, 0.3) 3px,
-              transparent 3px
-            )`,
-            backgroundSize: '50px 50px',
-            backgroundPosition: '0 0, 10px 10px',
-          }}
-        ></div>
+  className="absolute inset-0"
+  style={{
+    backgroundImage: `
+      linear-gradient(135deg, transparent 0%, transparent 25%, rgba(234, 184, 209, 0.1) 25%, rgba(234, 184, 209, 0.1) 50%, transparent 50%, transparent 75%, rgba(234, 184, 209, 0.1) 75%, rgba(234, 184, 209, 0.1) 100%),
+    `,
+    backgroundSize: '40px 40px, 40px 40px, 40px 40px',
+    backgroundPosition: '0 0, 20px 20px, 10px 10px'
+  }}
+></div>
 
         {/* Content */}
         <div className="relative z-10 flex flex-col lg:flex-row items-center w-full">
@@ -100,23 +94,23 @@ const LearningWeekBanner = ({ cards }) => {
       </motion.div>
 
       {/* Animated Mascot */}
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {showMascot && (
           <motion.div
-            className="absolute top-0 right-0 bottom-0 flex items-center z-20"
+            className="absolute top-0 bottom-0 right-0 flex items-center z-20 h-[350px] w-[350px]"
             variants={mascotVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
           >
             <img
-              src="images/card1.png"
+              src="walk.gif"
               alt="Mascot"
               className="h-full w-auto"
             />
           </motion.div>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
 
       <div
         className="grid grid-cols-1 gap-4 mt-8 mx-2 sm:mx-4 lg:mx-5 

@@ -31,25 +31,25 @@ const LearningEngagement = ({ activities, gamingActivities }) => {
         <div className="mt-4 md:mt-6 flex justify-center">
             <div className="bg-white rounded-full p-1 flex items-center shadow-md">
                 <button 
-                    className={`flex items-center px-4 md:px-24 py-2 md:py-3 rounded-full text-sm md:text-lg transition-colors duration-300 ${
+                    className={`flex items-center px-2 md:px-20 py-2 md:py-2 rounded-full text-sm md:text-lg transition-colors duration-300 ${
                         activeTab === 'activity' 
                             ? 'bg-green-800 text-white' 
                             : 'text-green-800'
                     }`}
                     onClick={() => setActiveTab('activity')}
                 >
-                    <Clock className="mr-1 md:mr-2" size={20} />
+                    <Clock className="mr-1 md:mr-2" size={16} />
                     Activity
                 </button>
                 <button 
-                    className={`flex items-center px-4 md:px-24 py-2 md:py-3 rounded-full text-sm md:text-lg transition-colors duration-300 ${
+                    className={`flex items-center px-2 md:px-20 py-1 md:py-2 rounded-full text-sm md:text-lg transition-colors duration-300 ${
                         activeTab === 'gaming' 
                             ? 'bg-green-800 text-white' 
                             : 'text-green-800'
                     }`}
                     onClick={() => setActiveTab('gaming')}
                 >
-                    <Gamepad2 className="mr-1 md:mr-2" size={20} />
+                    <Gamepad2 className="mr-1 md:mr-2" size={16} />
                     Gaming
                 </button>
             </div>

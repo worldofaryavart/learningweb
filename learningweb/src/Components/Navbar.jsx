@@ -40,7 +40,7 @@ const Navbar = () => {
 
                 <div className="flex items-center">
                     <div
-                        className="bg-[#6D1E1E] w-[50px] h-[50px] sm:w-[65px] sm:h-[65px] flex items-center justify-center rounded-full animate-pulse cursor-pointer"
+                        className="bg-[#6D1E1E] w-[50px] h-[50px] sm:w-[65px] sm:h-[65px] flex items-center justify-center rounded-full cursor-pointer"
                         onClick={toggleDropdown}
                     >
                         <button className="p-2 rounded-md text-white">

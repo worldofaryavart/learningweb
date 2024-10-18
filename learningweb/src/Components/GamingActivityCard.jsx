@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const GamingActivityCard = ({ gamingActivities }) => (
-    <div className="bg-white pb-4 w-full md:w-[220px] h-[300px] md:h-[350px] shadow-md rounded-md flex flex-col items-center">
+    <div className="bg-white pb-4 w-[280px] md:w-[220px] h-[300px] md:h-[350px] shadow-md rounded-md flex flex-col items-center">
         {gamingActivities.map((gamingActivity, index) => (
             <div
                 key={index}
@@ -32,10 +32,21 @@ GamingActivityCard.propTypes = {
 
 const GamingActivity = ({ gamingActivities }) => {
     const [startIndex, setStartIndex] = useState(0);
+    const [cardsToShow, setCardsToShow] = useState(4);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setCardsToShow(window.innerWidth < 768 ? 1 : 4);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const nextCards = () => {
         setStartIndex((prevIndex) =>
-            Math.min(prevIndex + 1, gamingActivities.length - 1)
+            Math.min(prevIndex + 1, gamingActivities.length - cardsToShow)
         );
     };
 
@@ -52,8 +63,8 @@ const GamingActivity = ({ gamingActivities }) => {
             >
                 <ChevronLeft size={20} />
             </button>
-            <div className="flex flex-nowrap overflow-x-auto md:overflow-x-visible space-x-2 md:space-x-4 px-8 md:px-0">
-                {gamingActivities.slice(startIndex, startIndex + 4).map((dayActivities, index) => (
+            <div className="flex flex-nowrap overflow-hidden w-[280px] md:w-auto md:space-x-4">
+                {gamingActivities.slice(startIndex, startIndex + cardsToShow).map((dayActivities, index) => (
                     <GamingActivityCard
                         key={startIndex + index + 1}
                         gamingActivities={dayActivities}
@@ -62,7 +73,7 @@ const GamingActivity = ({ gamingActivities }) => {
             </div>
             <button
                 onClick={nextCards}
-                disabled={startIndex >= gamingActivities.length - 4}
+                disabled={startIndex >= gamingActivities.length - cardsToShow}
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-1 shadow-md disabled:opacity-50 z-10"
             >
                 <ChevronRight size={20} />
